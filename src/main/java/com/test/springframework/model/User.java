@@ -5,14 +5,17 @@ import lombok.*;
 import javax.persistence.*;
 
 @Data
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-@Table(name = "TB_MEMBER")
-public class Member {
+@Table(name = "TB_USER")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memSeq;
+    private long usrSeq;
 
-    private String memName;
+    private String usrId;
+
+    private String usrPw;
+
+    private String usrName;
 }

@@ -2,7 +2,7 @@ server:
   tomcat:
     max-http-form-post-size: 5MB
     uri-encoding: UTF-8
-  port: 8080
+#  port: 8080
 
 spring:
   profiles:
@@ -18,9 +18,11 @@ spring:
   jpa:
     defer-datasource-initialization: true
 
+
 logging:
   level:
     root: debug
+#      org: debug
 ---
 
 spring:
@@ -28,10 +30,23 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:log4jdbc:h2:mem:honghong
+    url: jdbc:log4jdbc:h2:mem:local;MODE=ORACLE
     username: sa
     password:
   h2:
     console:
       enabled: true
       path: /h2
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
