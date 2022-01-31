@@ -23,3 +23,16 @@ CREATE SEQUENCE TB_AUTHORITY_SEQ
     START WITH 1000
     INCREMENT 1000
 ;
+
+/*
+    -------------------------------------------
+    Type     : Sequence
+    Name     : TB_REFRESHTOEKN_SEQ
+    Descript : REFRESHTOKEN table sequence
+    -------------------------------------------
+*/
+
+CREATE SEQUENCE TB_REFRESHTOKEN_SEQ
+    START WITH 1000
+    INCREMENT 1000
+;

@@ -2,7 +2,6 @@ server:
   tomcat:
     max-http-form-post-size: 5MB
     uri-encoding: UTF-8
-#  port: 8080
 
 spring:
   profiles:
@@ -16,8 +15,20 @@ spring:
       pool-name: Hikari
       read-only: false
   jpa:
-    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+#    properties:
+#    defer-datasource-initialization: true
+#          generate-ddl: false
+#          hibernate:
+#            ddl-auto: none
 
+log4jdbc:
+  spylogdelegator:
+    name: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
 
 logging:
   level:
@@ -30,13 +41,18 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:log4jdbc:h2:mem:local;MODE=ORACLE
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2
+    url: jdbc:log4jdbc:mysql://localhost:3306/springframework?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: as!234
+#    url: jdbc:log4jdbc:h2:mem:local;MODE=ORACLE
+#    username: sa
+#    password:
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
+server:
+  port: 9001
 
 ---
 spring:

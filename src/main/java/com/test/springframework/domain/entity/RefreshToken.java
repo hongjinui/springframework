@@ -1,18 +1,18 @@
-package com.test.springframework.model;
+package com.test.springframework.domain.entity;
 
-import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
+@Getter
 @Entity
 @Table(name = "TB_REFRESHTOKEN")
 public class RefreshToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long rtSeq;
+    private int rtSeq;
 
     private long usrSeq;
 
