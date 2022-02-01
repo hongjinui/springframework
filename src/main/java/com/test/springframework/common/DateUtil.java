@@ -1,6 +1,6 @@
 package com.test.springframework.common;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
@@ -9,12 +9,12 @@ public class DateUtil {
     /**
      * LocalDate -> String
      *
-     * @param localDate (LocalDate)
+     * @param localDateTime (LocalDate)
      * @return String
      */
-    public static String getLocalDateToString(LocalDate localDate){
+    public static String getLocalDateToString(LocalDateTime localDateTime){
 
-        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     }
 }

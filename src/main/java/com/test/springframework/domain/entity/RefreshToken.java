@@ -1,5 +1,6 @@
 package com.test.springframework.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name = "TB_REFRESHTOKEN")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class RefreshToken {
 
     @Id

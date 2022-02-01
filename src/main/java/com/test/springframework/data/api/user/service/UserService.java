@@ -36,6 +36,10 @@ public class UserService {
             HashMap<String, Object> data = new HashMap<>();
             data.put("user", user);
 
+//            System.out.println(user.getUsrId());
+//            System.out.println(user.getUsrName());
+//            System.out.println(user.getUsrSeq());
+
             apiCode = ApiCode.DATA_OK;
             responseData = ResponseData.apiResponse(HttpStatus.OK,data,apiCode);
 

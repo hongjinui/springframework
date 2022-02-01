@@ -13,4 +13,7 @@ springframework
 2022-01-31
  - h2 => mysql DB 변경
  - log4jdbc ,jpa 설정 변경
- - RESTful API 
+ - jpa RESTful API 
+
+2022-02-01
+ - 간단한 설정 수정
