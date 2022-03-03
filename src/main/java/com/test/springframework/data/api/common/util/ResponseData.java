@@ -1,6 +1,6 @@
 package com.test.springframework.data.api.common.util;
 
-import com.test.springframework.common.DateUtil;
+import com.test.springframework.util.DateUtil;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

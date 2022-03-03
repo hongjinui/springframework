@@ -1,4 +1,4 @@
-package com.test.springframework.common;
+package com.test.springframework.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
