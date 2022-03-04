@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -17,13 +18,20 @@ public class Order {
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEM_ID")
+    @JoinColumn(name = "MEM_ID")    // 주문자 정보
     private Member member;
 
-    private String ordTime;
+    @OneToOne(fetch = FetchType.LAZY)   // cascade 옵션 확인
+    @JoinColumn(name = "DVR_ID")
+    private Delivery delivery;          // 배달 정보
 
-    private String ordCompleteyn;
+    @Column(name = "ORD_TIME", updatable = false)
+    private LocalDateTime ordTime;     // 주문 시간
 
-    private String ordCancelyn;
+    @Column(name = "ORD_COMPLETEYN", nullable = false, length = 1)
+    private String ordCompleteyn;   // 주문 완료 여부
+
+    @Column(name = "ORD_CANCELYN", nullable = false, length = 1)
+    private String ordCancelyn;     // 주문 취소 여부
 
 }

@@ -22,7 +22,7 @@ public class Member{
     @Column(name = "MEM_EMAIL", length = 50, unique = true, nullable = false)
     private String memEmail;    // 맴버 이메일
 
-    @Column(name = "MEM_PHONE", length = 13, unique = true, nullable = false)
+    @Column(name = "MEM_PHONE", length = 11, unique = true, nullable = false)
     private String memPhone;    // 맴버 핸드폰 번호
 
     @Column(name = "MEM_ADDRESS", nullable = false)
@@ -34,11 +34,14 @@ public class Member{
     @Column(name = "MEM_SEX")
     private String memSex;      // 맴버 성
 
+//    @Column(name = "MEM_CREDITCARD", length = 16)
+//    private String memCreditCard;   // 신용카드
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")  // LAZY 권장 사항, mappedBy 개념 중요
 //    @JoinColumn(name = "ORD_ID")
     private List<Order> orders; // 맴버의 주문 목록
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GRD_ID")
     private Grade grade;        // 맴버 등급
 
