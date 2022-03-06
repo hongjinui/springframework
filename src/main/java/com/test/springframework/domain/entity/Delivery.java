@@ -22,8 +22,8 @@ public class Delivery {
     @Column(name = "DVR_CANCELYN", nullable = false, length = 1)
     private String dvrCancelyn;   // 배달 취소 여부
 
-    @Column(name = "DVR_DRIVER", nullable = false)
-    private String dvrDriver;    // 배달 담당자
+//    @Column(name = "DVR_DRIVER", nullable = false)
+//    private String dvrDriver;    // 배달 기사
 
     @Column(name = "DVR_COMPLETETIME", nullable = false)
     private LocalDateTime dvrCompletetime;  // 배달 완료 시간

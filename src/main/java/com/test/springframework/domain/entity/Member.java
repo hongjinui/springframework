@@ -19,7 +19,7 @@ public class Member{
     @Column(name = "MEM_NAME", length = 20, nullable = false)
     private String memName;     // 맴버 이름
 
-    @Column(name = "MEM_EMAIL", length = 50, unique = true, nullable = false)
+    @Column(name = "MEM_EMAIL", length = 30, unique = true, nullable = false)
     private String memEmail;    // 맴버 이메일
 
     @Column(name = "MEM_PHONE", length = 11, unique = true, nullable = false)
@@ -38,7 +38,6 @@ public class Member{
 //    private String memCreditCard;   // 신용카드
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")  // LAZY 권장 사항, mappedBy 개념 중요
-//    @JoinColumn(name = "ORD_ID")
     private List<Order> orders; // 맴버의 주문 목록
 
     @OneToOne(fetch = FetchType.LAZY)

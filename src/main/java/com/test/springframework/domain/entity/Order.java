@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,7 +22,10 @@ public class Order {
     @JoinColumn(name = "MEM_ID")    // 주문자 정보
     private Member member;
 
-    @OneToOne(fetch = FetchType.LAZY)   // cascade 옵션 확인
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderItem> orderItem;
+
+    @OneToOne(fetch = FetchType.LAZY)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
     @JoinColumn(name = "DVR_ID")
     private Delivery delivery;          // 배달 정보
 
