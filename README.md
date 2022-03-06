@@ -1,2 +1,2 @@
-# springframework
+# springframework - JPA
 springframework - JPA
