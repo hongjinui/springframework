@@ -1,6 +1,7 @@
 package com.test.springframework.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,5 +17,11 @@ public class Grade {
     private int id;
 
     @Column(name = "GRD_NAME", unique = true, nullable = false, length = 10)
+    @Enumerated(EnumType.STRING)
     private String grdName;     // 등급 명
+
+    @Builder
+    public Grade(String grdName){
+        this.grdName = grdName;
+    }
 }

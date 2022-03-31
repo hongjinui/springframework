@@ -17,6 +17,9 @@ spring:
       read-only: false
   jpa:
     hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 테이블 대문자
+#      ddl-auto: create-drop
       ddl-auto: update
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -24,6 +27,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   devtools:
 #    livereload:
 #      enabled: true #
