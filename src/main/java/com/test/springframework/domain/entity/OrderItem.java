@@ -23,4 +23,13 @@ public class OrderItem {
     @JoinColumn(name = "ITM_ID", nullable = false)
     private Item item;          // 아이템(상품) 정보
 
+    private void addOrder( Order order ){
+        this.order = order;
+        order.getOrderItems().add(this);
+    }
+
+    private void addItem( Item item ){
+        this.item = item;
+        item.getOrderItems().add(this);
+    }
 }

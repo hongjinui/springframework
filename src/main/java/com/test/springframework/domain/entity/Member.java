@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 왜 PROTECTED로 하는지 정리하자
+@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 왜 PROTECTED로 하는지 정리하자 - Builder pattern?
 @Table(name = "TB_MEMBER")
 public class Member{
 
@@ -36,6 +36,9 @@ public class Member{
 
 //    @Column(name = "MEM_CREDITCARD", length = 16)
 //    private String memCreditCard;   // 신용카드
+
+    @Column(name = "MEM_USEYN")
+    private String memUseyn;        // 맴버 탈퇴 여부
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")  // LAZY 권장 사항, mappedBy 개념 중요
     private List<Order> orders; // 맴버의 주문 목록

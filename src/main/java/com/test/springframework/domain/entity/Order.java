@@ -23,9 +23,9 @@ public class Order {
     private Member member;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
-    private List<OrderItem> orderItem;
+    private List<OrderItem> orderItems;
 
-    @OneToOne(fetch = FetchType.LAZY)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
     @JoinColumn(name = "DVR_ID")
     private Delivery delivery;          // 배달 정보
 
@@ -38,4 +38,8 @@ public class Order {
     @Column(name = "ORD_CANCELYN", nullable = false, length = 1)
     private String ordCancelyn;     // 주문 취소 여부
 
+    private void addMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
 }
