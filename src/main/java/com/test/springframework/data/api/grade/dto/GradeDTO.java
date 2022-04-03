@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GradeDTO {
 
+    private int id;
     private String grdName;
 
 }

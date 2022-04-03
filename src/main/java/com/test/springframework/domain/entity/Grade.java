@@ -1,5 +1,6 @@
 package com.test.springframework.domain.entity;
 
+import com.test.springframework.data.api.common.util.GradeEnum;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,10 +18,14 @@ public class Grade {
     private int id;
 
     @Column(name = "GRD_NAME", unique = true, nullable = false, length = 10)
-    @Enumerated(EnumType.STRING)
-    private String grdName;     // 등급 명
+//    @Enumerated(EnumType.STRING)
+//    private GradeEnum grdName;     // 등급 명
+    private String grdName;
 
     @Builder
+//    public Grade(GradeEnum grdName){
+//        this.grdName = grdName;
+//    }
     public Grade(String grdName){
         this.grdName = grdName;
     }
