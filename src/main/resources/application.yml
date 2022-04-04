@@ -11,7 +11,8 @@ spring:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-timeout: 30000
-      maximum-pool-size: 5
+#      maximum-pool-size: 5
+      maximum-pool-size: 3  #  요청이 많이 없으니 3로도 충분함
       max-lifetime: 58000
       pool-name: Hikari
       read-only: false
@@ -23,7 +24,7 @@ spring:
       ddl-auto: update
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
@@ -46,7 +47,7 @@ logging:
       hibernate:
         type:
           descriptor:
-            sql: trace
+            sql: error
 ---
 
 spring:

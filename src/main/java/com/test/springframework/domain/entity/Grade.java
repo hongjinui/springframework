@@ -1,6 +1,5 @@
 package com.test.springframework.domain.entity;
 
-import com.test.springframework.data.api.common.util.GradeEnum;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,6 +26,10 @@ public class Grade {
 //        this.grdName = grdName;
 //    }
     public Grade(String grdName){
+        this.grdName = grdName;
+    }
+
+    public void updateGrdName(String grdName){
         this.grdName = grdName;
     }
 }

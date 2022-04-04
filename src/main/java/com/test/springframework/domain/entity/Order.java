@@ -22,7 +22,7 @@ public class Order {
     @JoinColumn(name = "MEM_ID")    // 주문자 정보
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함

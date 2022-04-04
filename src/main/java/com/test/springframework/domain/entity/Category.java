@@ -2,6 +2,7 @@ package com.test.springframework.domain.entity;
 
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,4 +19,14 @@ public class Category {
 
     @Column(name = "CTG_NAME", nullable = false)
     private String ctgName;     // 카테고리 명 -- 한식,중식,일식,분식 등
+
+    @Builder
+    public Category(String ctgName){
+        this.ctgName = ctgName;
+    }
+
+    public void updateCtgName(String ctgName){
+        this.ctgName = ctgName;
+
+    }
 }
