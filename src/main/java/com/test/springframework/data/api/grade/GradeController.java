@@ -3,7 +3,7 @@ package com.test.springframework.data.api.grade;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
 import com.test.springframework.data.api.grade.dto.GradeDTO;
 import com.test.springframework.data.api.grade.service.GradeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,20 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("api/grade")
+@RequiredArgsConstructor
 public class GradeController {
 
-    @Autowired
-    GradeService gradeService;
+    private final GradeService gradeService;
 
     /**
-     *
-     * @descrpition : 등급 저장
-     * @param  : GradeDTO
+     * @param : GradeDTO
      * @return : ResponseEntity
-     *
-     * */
+     * @descrpition : 등급 저장
+     */
     @PostMapping("v1/saveGrade")
-    public ResponseEntity<?> saveGrade(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> saveGrade(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = gradeService.saveGrade(param, httpServletRequest);
 
@@ -36,14 +34,12 @@ public class GradeController {
     }
 
     /**
-     *
-     * @descrpition : 등급 조회
-     * @param  : GradeDTO
+     * @param : GradeDTO
      * @return : ResponseEntity
-     *
-     * */
+     * @descrpition : 등급 조회
+     */
     @PostMapping("v1/selectGrades")
-    public ResponseEntity<?> selectGrades(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> selectGrades(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = gradeService.selectGrades(param, httpServletRequest);
 
@@ -51,14 +47,12 @@ public class GradeController {
     }
 
     /**
-     *
-     * @descrpition : 등급 수정
-     * @param  : GradeDTO
+     * @param : GradeDTO
      * @return : ResponseEntity
-     *
-     * */
+     * @descrpition : 등급 수정
+     */
     @PostMapping("v1/updateGrade")
-    public ResponseEntity<?> updateGrade(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> updateGrade(@RequestBody GradeDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = gradeService.updateGrade(param, httpServletRequest);
 

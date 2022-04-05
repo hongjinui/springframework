@@ -1,8 +1,7 @@
 package com.test.springframework.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)  // 왜 PROTECTED로 하는지 정리하자 - Builder pattern?
 @Table(name = "TB_MEMBER")
+@ToString(exclude = {"orders", "grade"})   // orders,grade 제외시키는 이유 : 지연 로딩인데 @ToString 때문에 쿼리를 실행시키기 때문에
 public class Member{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +37,8 @@ public class Member{
 //    @Column(name = "MEM_CREDITCARD", length = 16)
 //    private String memCreditCard;   // 신용카드
 
-    @Column(name = "MEM_USEYN")
+    @Column(name = "MEM_USEYN", nullable = false)
+    @ColumnDefault("Y")
     private String memUseyn;        // 맴버 탈퇴 여부
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")  // LAZY 권장 사항, mappedBy 개념 중요
@@ -47,9 +48,13 @@ public class Member{
     @JoinColumn(name = "GRD_ID")
     private Grade grade;        // 맴버 등급
 
-
-
-
-
+    @Builder    // 필수 값만 빌더메소드에 추가
+    public Member(String memName, String memEmail, String memPhone, String memAddress,Grade grade){
+        this.memName = memName;
+        this.memEmail = memEmail;
+        this.memPhone = memPhone;
+        this.memAddress = memAddress;
+        this.grade = grade;
+    }
 
 }

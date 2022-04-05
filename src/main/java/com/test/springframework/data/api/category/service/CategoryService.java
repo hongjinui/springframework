@@ -6,7 +6,6 @@ import com.test.springframework.data.api.common.util.ApiCode;
 import com.test.springframework.data.api.common.util.ResponseData;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
 import com.test.springframework.domain.entity.Category;
-import com.test.springframework.domain.entity.QCategory;
 import com.test.springframework.domain.repogitory.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
