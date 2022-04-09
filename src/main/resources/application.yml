@@ -9,11 +9,12 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 #    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: org.h2.Driver
     hikari:
       connection-timeout: 30000
 #      maximum-pool-size: 5
       maximum-pool-size: 3  #  요청이 많이 없으니 3로도 충분함
-      max-lifetime: 58000
+      max-lifetime: 580000
       pool-name: Hikari
       read-only: false
   jpa:
@@ -24,6 +25,7 @@ spring:
       ddl-auto: update
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
+#    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: false
     properties:
       hibernate:
@@ -59,13 +61,14 @@ spring:
 #    url: jdbc:mysql://localhost:3306/springframework?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: as!234
-#    url: jdbc:log4jdbc:h2:mem:local;MODE=MYSQL
+#    url: jdbc:log4jdbc:h2:mem:local/test;MODE=MYSQL
+#    url: jdbc:h2:mem:test
 #    username: sa
 #    password:
-#  h2:
-#    console:
-#      enabled: true
-#      path: /h2
+  h2:
+    console:
+      enabled: true
+      path: /h2
 server:
   port: 9001
 
