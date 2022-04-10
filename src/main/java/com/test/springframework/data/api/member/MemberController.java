@@ -1,6 +1,7 @@
 package com.test.springframework.data.api.member;
 
 
+import com.test.springframework.data.api.common.dto.PagingDTO;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
 import com.test.springframework.data.api.member.dto.MemberDTO;
 import com.test.springframework.data.api.member.service.MemberService;
@@ -27,11 +28,11 @@ public class MemberController {
      * @descrpition : 회원 가입
      */
     @PostMapping("v1/saveMember")
-    public ResponseEntity<?> saveMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> saveMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.saveMember(param, httpServletRequest);
 
-        return new ResponseEntity<>(responseData,HttpStatus.OK);
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
 
     }
 
@@ -41,25 +42,39 @@ public class MemberController {
      * @descrpition : 회원 수정
      */
     @PostMapping("v1/updateMember")
-    public ResponseEntity<?> updateMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> updateMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.updateMember(param, httpServletRequest);
 
-        return new ResponseEntity<>(responseData,HttpStatus.OK);
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
 
     }
 
     /**
      * @param : MemberDTO
      * @return : ResponseEntity
-     * @descrpition : 회원 정보 보기
+     * @descrpition : 회원 정보
      */
     @PostMapping("v1/selectMember")
-    public ResponseEntity<?> selectMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> selectMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.selectMember(param, httpServletRequest);
 
-        return new ResponseEntity<>(responseData,HttpStatus.OK);
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+
+    }
+
+    /**
+     * @param : MemberDTO
+     * @return : ResponseEntity
+     * @descrpition : 회원 정보 목록 페이징
+     */
+    @PostMapping("v1/selectMembersPage")
+    public ResponseEntity<?> selectMembersPage(@RequestBody MemberDTO param, @RequestBody PagingDTO pageParam, HttpServletRequest httpServletRequest) {
+
+        ApiResponseVO responseData = memberService.selectMembersPage(param, pageParam, httpServletRequest);
+
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
 
     }
 }
