@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class OrderItem {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "ORDITM_ID")
+    private long orditmId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORD_ID", nullable = false)

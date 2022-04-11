@@ -19,9 +19,9 @@ public class QCategory extends EntityPathBase<Category> {
 
     public static final QCategory category = new QCategory("category");
 
-    public final StringPath ctgName = createString("ctgName");
+    public final NumberPath<Integer> ctgId = createNumber("ctgId", Integer.class);
 
-    public final NumberPath<Integer> id = createNumber("id", Integer.class);
+    public final StringPath ctgName = createString("ctgName");
 
     public QCategory(String variable) {
         super(Category.class, forVariable(variable));

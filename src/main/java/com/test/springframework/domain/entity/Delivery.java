@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class Delivery {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "DVR_ID")
+    private long dvrId;
 
     @Column(name = "DVR_COMPLETEYN", nullable = false, length = 1)
     private String dvrCompleteyn; // 배달 완료 여부

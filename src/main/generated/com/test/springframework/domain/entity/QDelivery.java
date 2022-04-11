@@ -25,7 +25,7 @@ public class QDelivery extends EntityPathBase<Delivery> {
 
     public final StringPath dvrCompleteyn = createString("dvrCompleteyn");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final NumberPath<Long> dvrId = createNumber("dvrId", Long.class);
 
     public QDelivery(String variable) {
         super(Delivery.class, forVariable(variable));

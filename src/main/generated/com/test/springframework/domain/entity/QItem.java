@@ -24,7 +24,7 @@ public class QItem extends EntityPathBase<Item> {
 
     public final QCategory category;
 
-    public final NumberPath<Integer> id = createNumber("id", Integer.class);
+    public final NumberPath<Integer> itmId = createNumber("itmId", Integer.class);
 
     public final StringPath itmName = createString("itmName");
 

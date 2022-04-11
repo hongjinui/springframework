@@ -1,7 +1,6 @@
 package com.test.springframework.data.api.member;
 
 
-import com.test.springframework.data.api.common.dto.PagingDTO;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
 import com.test.springframework.data.api.member.dto.MemberDTO;
 import com.test.springframework.data.api.member.service.MemberService;
@@ -27,7 +26,7 @@ public class MemberController {
      * @return : ResponseEntity
      * @descrpition : 회원 가입
      */
-    @PostMapping("v1/saveMember")
+    @PostMapping(value = "/v1/saveMember")
     public ResponseEntity<?> saveMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.saveMember(param, httpServletRequest);
@@ -41,7 +40,7 @@ public class MemberController {
      * @return : ResponseEntity
      * @descrpition : 회원 수정
      */
-    @PostMapping("v1/updateMember")
+    @PostMapping("/v1/updateMember")
     public ResponseEntity<?> updateMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.updateMember(param, httpServletRequest);
@@ -55,7 +54,7 @@ public class MemberController {
      * @return : ResponseEntity
      * @descrpition : 회원 정보
      */
-    @PostMapping("v1/selectMember")
+    @PostMapping(value ="/v1/selectMember")
     public ResponseEntity<?> selectMember(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiResponseVO responseData = memberService.selectMember(param, httpServletRequest);
@@ -69,10 +68,10 @@ public class MemberController {
      * @return : ResponseEntity
      * @descrpition : 회원 정보 목록 페이징
      */
-    @PostMapping("v1/selectMembersPage")
-    public ResponseEntity<?> selectMembersPage(@RequestBody MemberDTO param, @RequestBody PagingDTO pageParam, HttpServletRequest httpServletRequest) {
+    @PostMapping(value ="/v1/selectMembersPage")
+    public ResponseEntity<?> selectMembersPage(@RequestBody MemberDTO param, HttpServletRequest httpServletRequest) throws Exception{
 
-        ApiResponseVO responseData = memberService.selectMembersPage(param, pageParam, httpServletRequest);
+        ApiResponseVO responseData = memberService.selectMembersPage(param, httpServletRequest);
 
         return new ResponseEntity<>(responseData, HttpStatus.OK);
 

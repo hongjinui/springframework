@@ -2,7 +2,6 @@ package com.test.springframework.data.api.member.service;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.test.springframework.data.api.common.dto.PagingDTO;
 import com.test.springframework.data.api.common.util.ApiCode;
 import com.test.springframework.data.api.common.util.ResponseData;
 import com.test.springframework.data.api.common.vo.ApiResponseVO;
@@ -42,7 +41,7 @@ public class MemberService {
 
             // 첫 가입시 BRONZE 등급으로 저장
             Grade resultGrade = jpaQueryFactory.selectFrom(grade)
-                    .where(grade.id.eq(2))
+                    .where(grade.grdId.eq(2))
                     .fetchOne();
 
             // 회원 가입 필수 데이터 + 등급
@@ -76,12 +75,12 @@ public class MemberService {
         try {
             Member resultMember = jpaQueryFactory
                     .selectFrom(member)
-                    .where(member.id.eq(param.getId()))
+                    .where(member.memEmail.eq(param.getMemEmail()))
                     .fetchOne();
 
             if (resultMember == null) throw new Exception();
             resultMember.updateMemName(param.getMemName());     // 회원 이름
-            resultMember.updateMemEmail(param.getMemEmail());   // 회원 이메일
+//            resultMember.updateMemEmail(param.getMemEmail());   // 회원 이메일
             resultMember.updateMemPhone(param.getMemPhone());   // 회원 휴대폰 번호
             resultMember.updateAddress(param.getMemAddress());  // 회원 주소
 
@@ -116,8 +115,8 @@ public class MemberService {
                     .from(member)
                     .innerJoin(member.grade, grade)
                     .where(
-//                            memIdEq(param.getId()),           // id(pk)가 같은 조건 -- 값이 없으면 null
-                            memEmailEq(param.getMemEmail())   // 이메일 같은 조건
+                            memIdEq(param.getMemId())           // id(pk)가 같은 조건 -- 값이 없으면 null
+                            , memEmailEq(param.getMemEmail())   // 이메일 같은 조건
                             , memPhoneEq(param.getMemPhone())   // 휴대폰 번호 같은 조건
                     )
                     .fetchOne();
@@ -132,14 +131,15 @@ public class MemberService {
 
     }
 
-    public ApiResponseVO selectMembersPage(MemberDTO param, PagingDTO pageParam, HttpServletRequest httpServletRequest) {
+    @Transactional
+    public ApiResponseVO selectMembersPage(MemberDTO param, HttpServletRequest httpServletRequest) {
 
         ApiCode apiCode = ApiCode.ERROR;
         ApiResponseVO responseData = null;
 
         try {
 
-            initPage(pageParam);
+            initPage(param);
 
             List<MemberVO> members = jpaQueryFactory
                     .select(new QMemberVO(
@@ -154,14 +154,17 @@ public class MemberService {
                     ))
                     .from(member)
                     .innerJoin(member.grade, grade)     // grade inner join
-                    .orderBy(member.memName.asc())
-                    .offset(pageParam.getPageNum())     // 페이지 번호
-                    .limit(pageParam.getCntPerPage())   // 페이지 당 수
+                    .where(
+                            memIdLt(param.getLastMemId())
+                    )
+                    .orderBy(member.memId.desc())
+//                    .offset(param.getPageNum())     // 페이지 번호
+                    .limit(param.getCntPerPage())   // 페이지 당 수
                     .fetch();
 
             apiCode = ApiCode.DATA_OK;
             responseData = ResponseData.apiResponse(HttpStatus.OK, members, apiCode);
-            
+
         } catch (Exception e) {
             responseData = ResponseData.apiResponse(HttpStatus.INTERNAL_SERVER_ERROR, null, apiCode);
         }
@@ -171,33 +174,38 @@ public class MemberService {
 
     }
 
-    private void initPage(PagingDTO pageParam) {
+    // 페이지 초기화
+    private void initPage(MemberDTO param) {
 
-        int pageNum = pageParam.getPageNum();
-//        int pageCnt = pageParam.getPageCnt();
-        int cntPerPage = pageParam.getCntPerPage();
-
-        if( pageNum == 0 ) pageNum = 1;
-//        if( pageNum == 0 ) pageNum = 1;
-        if( cntPerPage == 0 ) cntPerPage = 10;
+        if (param.getLastMemId() == 0) param.setLastMemId(0);
+        if (param.getCntPerPage() == 0) param.setCntPerPage(10);
 
     }
 
     // 회원 id(pk)
-//    private BooleanExpression memIdEq(Long memId){
-//        return (memId != null && memId != 0) ? member.id.eq(memId) : null;
-//    }
+    private BooleanExpression memIdEq(Long memId) {
+        return (memId != null && memId != 0) ? member.memId.eq(memId) : null;
+    }
+
     // 회원 명
-    private BooleanExpression memNameEq(String memName){
+    private BooleanExpression memNameEq(String memName) {
         return hasText(memName) ? member.memName.eq(memName) : null;
     }
+
     // 회원 이메일
-    private BooleanExpression memEmailEq(String memEmail){
+    private BooleanExpression memEmailEq(String memEmail) {
         return hasText(memEmail) ? member.memEmail.eq(memEmail) : null;
     }
+
     // 회원 핸드폰 번호
-    private BooleanExpression memPhoneEq(String memPhone){
+    private BooleanExpression memPhoneEq(String memPhone) {
         return hasText(memPhone) ? member.memPhone.eq(memPhone) : null;
     }
+
+    // 회원 id 이하
+    private BooleanExpression memIdLt(Integer lastMemId) {
+        return (lastMemId != null && lastMemId != 0) ? member.memId.lt(lastMemId) : null;
+    }
+
 
 }

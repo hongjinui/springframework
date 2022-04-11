@@ -1,7 +1,6 @@
 package com.test.springframework.domain.entity;
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,11 +9,12 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)  // 왜 PROTECTED로 하는지 정리하자 - Builder pattern?
 @Table(name = "TB_MEMBER")
-//@ToString(exclude = {"orders", "grade"})   // orders,grade 제외시키는 이유 : 지연 로딩인데 @ToString 때문에 쿼리를 실행시키기 때문에
+@ToString(exclude = {"orders", "grade"})   // orders,grade 제외시키는 이유 : 지연 로딩인데 @ToString 때문에 쿼리를 실행시키기 때문에
 public class Member{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "MEM_ID")
+    private long memId;
 
     @Column(name = "MEM_NAME", length = 20, nullable = false)
     private String memName;     // 맴버 이름

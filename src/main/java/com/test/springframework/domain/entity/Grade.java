@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class Grade {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "GRD_ID")
+    private int grdId;
 
     @Column(name = "GRD_NAME", unique = true, nullable = false, length = 10)
 //    @Enumerated(EnumType.STRING)

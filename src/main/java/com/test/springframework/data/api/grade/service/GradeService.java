@@ -67,7 +67,7 @@ public class GradeService {
             // TB_GRADE 테이블 셀렉트
             List<Grade> grades = jpaQueryFactory
                     .selectFrom(grade) // QGrade.grade 스테틱 임포트하였음
-                    .orderBy(grade.id.asc())
+                    .orderBy(grade.grdId.asc())
                     .fetch();
             apiCode = ApiCode.DATA_OK;
             responseData = ResponseData.apiResponse(HttpStatus.OK, grades, apiCode);

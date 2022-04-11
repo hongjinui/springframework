@@ -84,7 +84,7 @@ public class CategoryService {
         try{
             List<Category> categories = jpaQueryFactory
                     .selectFrom(category)
-                    .orderBy(category.id.asc())
+                    .orderBy(category.ctgId.asc())
                     .fetch();
 
             apiCode = ApiCode.DATA_OK;

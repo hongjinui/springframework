@@ -15,7 +15,8 @@ import javax.persistence.*;
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "CTG_ID")
+    private int ctgId;
 
     @Column(name = "CTG_NAME", nullable = false)
     private String ctgName;     // 카테고리 명 -- 한식,중식,일식,분식 등

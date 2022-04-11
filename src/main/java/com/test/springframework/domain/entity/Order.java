@@ -16,7 +16,8 @@ import java.util.List;
 public class Order {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name = "ORD_ID")
+    private long ordId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEM_ID")    // 주문자 정보

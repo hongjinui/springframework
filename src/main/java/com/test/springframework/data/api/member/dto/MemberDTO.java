@@ -1,13 +1,12 @@
 package com.test.springframework.data.api.member.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 public class MemberDTO {
 
-    private long id;
+    private long memId;
     private String memName;
     private String memEmail;
     private String memPhone;
@@ -16,4 +15,6 @@ public class MemberDTO {
     private String memSex;
     private String memUseyn;
 
+    private int lastMemId;
+    private int cntPerPage;
 }

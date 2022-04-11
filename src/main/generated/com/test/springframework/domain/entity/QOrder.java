@@ -24,8 +24,6 @@ public class QOrder extends EntityPathBase<Order> {
 
     public final QDelivery delivery;
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
-
     public final QMember member;
 
     public final StringPath ordCancelyn = createString("ordCancelyn");
@@ -33,6 +31,8 @@ public class QOrder extends EntityPathBase<Order> {
     public final StringPath ordCompleteyn = createString("ordCompleteyn");
 
     public final ListPath<OrderItem, QOrderItem> orderItems = this.<OrderItem, QOrderItem>createList("orderItems", OrderItem.class, QOrderItem.class, PathInits.DIRECT2);
+
+    public final NumberPath<Long> ordId = createNumber("ordId", Long.class);
 
     public final DateTimePath<java.time.LocalDateTime> ordTime = createDateTime("ordTime", java.time.LocalDateTime.class);
 

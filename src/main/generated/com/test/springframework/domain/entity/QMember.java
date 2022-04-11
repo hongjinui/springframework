@@ -24,13 +24,13 @@ public class QMember extends EntityPathBase<Member> {
 
     public final QGrade grade;
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
-
     public final StringPath memAddress = createString("memAddress");
 
     public final StringPath memAge = createString("memAge");
 
     public final StringPath memEmail = createString("memEmail");
+
+    public final NumberPath<Long> memId = createNumber("memId", Long.class);
 
     public final StringPath memName = createString("memName");
 

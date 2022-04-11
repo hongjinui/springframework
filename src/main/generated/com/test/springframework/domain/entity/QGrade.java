@@ -19,9 +19,9 @@ public class QGrade extends EntityPathBase<Grade> {
 
     public static final QGrade grade = new QGrade("grade");
 
-    public final StringPath grdName = createString("grdName");
+    public final NumberPath<Integer> grdId = createNumber("grdId", Integer.class);
 
-    public final NumberPath<Integer> id = createNumber("id", Integer.class);
+    public final StringPath grdName = createString("grdName");
 
     public QGrade(String variable) {
         super(Grade.class, forVariable(variable));

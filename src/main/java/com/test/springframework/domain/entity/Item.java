@@ -14,7 +14,8 @@ import java.util.List;
 public class Item {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "ITM_ID")
+    private int itmId;
 
     @Column(name = "ITM_NAME", length = 15, nullable = false)
     private String itmName;     // 아이템(상품) 명
