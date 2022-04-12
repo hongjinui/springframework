@@ -1,6 +1,7 @@
 package com.test.springframework.domain.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -34,4 +35,19 @@ public class Item {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     private List<OrderItem> orderItems;
+
+    @Builder
+    public Item(String itmName, int itmPrice, Category category){
+        this.itmName = itmName;
+        this.itmPrice = itmPrice;
+        this.category = category;
+    }
+
+    public void updateItmName(String itmName){
+        this.itmName = itmName;
+    }
+    public void updateCtg(Category category){
+        this.category = category;
+    }
 }
+
