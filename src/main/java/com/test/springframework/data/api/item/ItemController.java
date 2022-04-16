@@ -44,5 +44,16 @@ public class ItemController {
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
+    /**
+     * @param : MemberDTO
+     * @return : ResponseEntity
+     * @descrpition : 아이템(상품) 조회
+     */
+    @PostMapping(value = "/v1/selectItems")
+    public ResponseEntity<?> selectItems(@RequestBody ItemDTO param, HttpServletRequest httpServletRequest){
+        ApiResponseVO responseData = itemService.selectItems(param,httpServletRequest);
+
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 
 }

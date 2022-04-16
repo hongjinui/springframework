@@ -14,7 +14,8 @@ import java.util.List;
 @Table(name = "TB_ITEM")
 public class Item {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ITM_ID")
     private int itmId;
 
@@ -31,23 +32,28 @@ public class Item {
     /**
      * Item과 OrderItem을 양방향 매핑을 해야하나?
      * 해야지 상품을 검색해서 얼마나 팔렸나 볼 수 있지 관리자에게는 필요 할 수 있지.
-     * */
+     */
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     private List<OrderItem> orderItems;
 
     @Builder
-    public Item(String itmName, int itmPrice, Category category){
+    public Item(String itmName, int itmPrice, Category category) {
         this.itmName = itmName;
         this.itmPrice = itmPrice;
         this.category = category;
     }
 
-    public void updateItmName(String itmName){
+    public void updateItmName(String itmName) {
         this.itmName = itmName;
     }
-    public void updateCtg(Category category){
+
+    public void updateCtg(Category category) {
         this.category = category;
+    }
+
+    public void updateItmPrice(int itmPrice) {
+        this.itmPrice = itmPrice;
     }
 }
 
