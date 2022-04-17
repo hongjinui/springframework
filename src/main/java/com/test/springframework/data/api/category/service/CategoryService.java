@@ -36,9 +36,7 @@ public class CategoryService {
                     .ctgName(param.getCtgName())
                     .build();
 
-            categoryRepository.save(category);
-
-            Category resultCategory = categoryRepository.findByCtgName(param.getCtgName());
+            Category resultCategory = categoryRepository.save(category);
 
             apiCode = ApiCode.DATA_OK;
             responseData = ResponseData.apiResponse(HttpStatus.OK, resultCategory, apiCode);

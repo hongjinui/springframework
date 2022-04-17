@@ -40,12 +40,7 @@ public class GradeService {
                     .build();
             // persistenc 관리하에 있음
             // 트랜잭션 완료 후 실제 DB에 저장됨
-            gradeRepository.save(grade);
-
-            // persistenc 1차 캐시에서 관리하고 있기 때문에 실제로 셀렉트 쿼리를 동작하지 않는다.
-            Grade resultGrade = gradeRepository.findByGrdName(param.getGrdName());
-
-//            System.out.println(resultGrade);
+            Grade resultGrade = gradeRepository.save(grade);
 
             apiCode = ApiCode.DATA_OK;
             responseData = ResponseData.apiResponse(HttpStatus.OK, resultGrade, apiCode);

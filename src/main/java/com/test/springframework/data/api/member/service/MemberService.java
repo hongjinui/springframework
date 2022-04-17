@@ -55,10 +55,10 @@ public class MemberService {
                     .build();
 
             // 회원 가입
-            memberRepository.save(member);
+            Member resultMember = memberRepository.save(member);
 
             apiCode = ApiCode.DATA_OK;
-            responseData = ResponseData.apiResponse(HttpStatus.OK, member, apiCode);
+            responseData = ResponseData.apiResponse(HttpStatus.OK, resultMember, apiCode);
         } catch (Exception e) {
             responseData = ResponseData.apiResponse(HttpStatus.INTERNAL_SERVER_ERROR, null, apiCode);
         }

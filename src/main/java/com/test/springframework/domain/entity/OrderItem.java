@@ -16,7 +16,7 @@ public class OrderItem {
     @Column(name = "ORDITM_ID")
     private long orditmId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ORD_ID", nullable = false)
     private Order order;        // 주문 정보
 

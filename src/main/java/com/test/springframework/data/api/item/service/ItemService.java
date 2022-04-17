@@ -51,10 +51,10 @@ public class ItemService {
                     .category(resultCategory)
                     .build();
 
-            itemRepository.save(item);
+            Item resultItem = itemRepository.save(item);
 
             apiCode = ApiCode.DATA_OK;
-            responseData = ResponseData.apiResponse(HttpStatus.OK, item,apiCode);
+            responseData = ResponseData.apiResponse(HttpStatus.OK, resultItem,apiCode);
         }
         catch (Exception e){
             responseData = ResponseData.apiResponse(HttpStatus.INTERNAL_SERVER_ERROR,null, apiCode);

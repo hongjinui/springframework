@@ -2,6 +2,7 @@ package com.test.springframework.domain.entity;
 
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,7 +24,7 @@ public class Order {
     @JoinColumn(name = "MEM_ID")    // 주문자 정보
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItem> orderItems;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
@@ -43,4 +44,7 @@ public class Order {
         this.member = member;
         member.getOrders().add(this);
     }
+
+//    @Builder
+//    public Order(String )
 }
