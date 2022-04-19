@@ -27,7 +27,7 @@ public class Order {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItem> orderItems;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
+    @OneToOne(fetch = FetchType.LAZY)   // cascade 옵션 확인 -- 주문이 취소되면 배달도 취소되어야함
     @JoinColumn(name = "DVR_ID")
     private Delivery delivery;          // 배달 정보
 
